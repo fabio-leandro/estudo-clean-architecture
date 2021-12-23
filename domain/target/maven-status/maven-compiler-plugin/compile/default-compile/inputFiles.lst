@@ -1,0 +1,11 @@
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/OperationType.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/customer/Customer.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/FinancialOperation.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/customer/Address.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/AccountStatus.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/customer/PhoneType.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/OperationDescription.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/Payments.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/customer/Phone.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/AccountType.java
+/home/fabio/Documents/spring/api-bank/domain/src/main/java/com/fabio/entities/account/BankAccount.java

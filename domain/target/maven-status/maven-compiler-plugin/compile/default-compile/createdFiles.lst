@@ -1,0 +1,11 @@
+com/fabio/entities/account/Payments.class
+com/fabio/entities/account/OperationDescription.class
+com/fabio/entities/account/BankAccount.class
+com/fabio/entities/account/AccountStatus.class
+com/fabio/entities/account/FinancialOperation.class
+com/fabio/entities/account/AccountType.class
+com/fabio/entities/customer/Address.class
+com/fabio/entities/account/OperationType.class
+com/fabio/entities/customer/Customer.class
+com/fabio/entities/customer/Phone.class
+com/fabio/entities/customer/PhoneType.class
