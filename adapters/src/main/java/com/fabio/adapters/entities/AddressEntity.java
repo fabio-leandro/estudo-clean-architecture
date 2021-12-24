@@ -24,6 +24,7 @@ public class AddressEntity implements Serializable {
     private String cep;
     private String street;
     private String complement;
+    private String number;
     private String neighbor;
     private String city;
     private String uf;

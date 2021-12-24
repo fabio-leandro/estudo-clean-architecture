@@ -8,21 +8,31 @@ public class Address {
     private String cep;
     private String street;
     private String complement;
+    private String number;
     private String neighbor;
     private String city;
     private String uf;
 
-    public Address(Long id, String cep, String street, String complement, String neighbor, String city, String uf) {
+    public Address(Long id, String cep, String street, String complement, String number, String neighbor, String city, String uf) {
         this.id = id;
         this.cep = cep;
         this.street = street;
         this.complement = complement;
+        this.number = number;
         this.neighbor = neighbor;
         this.city = city;
         this.uf = uf;
     }
 
     public Address() {
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Long getId() {
@@ -86,11 +96,11 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(id, address.id) && Objects.equals(cep, address.cep) && Objects.equals(street, address.street) && Objects.equals(complement, address.complement) && Objects.equals(neighbor, address.neighbor) && Objects.equals(city, address.city) && Objects.equals(uf, address.uf);
+        return Objects.equals(id, address.id) && Objects.equals(cep, address.cep) && Objects.equals(street, address.street) && Objects.equals(complement, address.complement) && Objects.equals(number, address.number) && Objects.equals(neighbor, address.neighbor) && Objects.equals(city, address.city) && Objects.equals(uf, address.uf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cep, street, complement, neighbor, city, uf);
+        return Objects.hash(id, cep, street, complement, number, neighbor, city, uf);
     }
 }
