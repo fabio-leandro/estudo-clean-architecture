@@ -1,6 +1,5 @@
 package com.fabio.adapters.consumers;
 
-import com.fabio.adapters.dtos.AddressEntityDTO;
 import com.fabio.adapters.entities.AddressConsumer;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;

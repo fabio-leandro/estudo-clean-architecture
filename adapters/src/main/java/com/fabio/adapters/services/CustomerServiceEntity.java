@@ -8,7 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceEntity implements CustomerRepositoryPort {
@@ -24,6 +26,14 @@ public class CustomerServiceEntity implements CustomerRepositoryPort {
     public Customer save(Customer customer) {
         CustomerEntity customerEntity = customerRepositoryJPA.save(modelMapper.map(customer, CustomerEntity.class));
         return modelMapper.map(customerEntity, Customer.class);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        List<CustomerEntity> customerEntityList = customerRepositoryJPA.findAll();
+        List<Customer> customerList = customerEntityList.stream().map(c -> modelMapper.map(c,Customer.class))
+                .collect(Collectors.toList());
+        return customerList;
     }
 
     @Override

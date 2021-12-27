@@ -4,6 +4,7 @@ import com.fabio.entities.customer.Customer;
 import com.fabio.ports.customer.CustomerRepositoryPort;
 import com.fabio.ports.customer.CustomerServicePort;
 
+import java.util.List;
 import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerServicePort {
@@ -17,6 +18,11 @@ public class CustomerServiceImpl implements CustomerServicePort {
     @Override
     public Customer save(Customer customer) {
         return customerRepositoryPort.save(customer);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return customerRepositoryPort.findAll();
     }
 
     @Override
