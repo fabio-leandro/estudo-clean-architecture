@@ -37,8 +37,10 @@ public class CustomerServiceEntity implements CustomerRepositoryPort {
     }
 
     @Override
-    public Optional<Customer> findById(Long id) {
-        return Optional.empty();
+    public Optional<Customer> findById(Long id)  {
+        Optional<CustomerEntity> customerEntity = customerRepositoryJPA.findById(id);
+        Customer customerOptional = modelMapper.map(customerEntity,Customer.class);
+        return Optional.of(customerOptional);
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -43,6 +44,13 @@ public class CustomerController {
                Page<CustomerEntityDTO> page = new PageImpl<>(customerEntityDTOList
                        ,pageable,customerEntityDTOList.size());
                return page;
+        }
+
+        @GetMapping("/{id}")
+        public ResponseEntity<CustomerEntityDTO> findById(@PathVariable Long id){
+            Optional<Customer> customer = customerServicePort.findById(id);
+            CustomerEntityDTO customerEntityDTO = modelMapper.map(customer,CustomerEntityDTO.class);
+            return ResponseEntity.status(HttpStatus.OK).body(customerEntityDTO);
         }
 
 }

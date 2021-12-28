@@ -26,8 +26,8 @@ public class CustomerServiceImpl implements CustomerServicePort {
     }
 
     @Override
-    public Optional<Customer> findById(Long id) {
-        return Optional.empty();
+    public Optional<Customer> findById(Long id){
+        return customerRepositoryPort.findById(id);
     }
 
     @Override
