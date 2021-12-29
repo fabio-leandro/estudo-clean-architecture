@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerServicePort {
 
     @Override
     public Optional<Customer> findByCpf(String cpf) {
-        return Optional.empty();
+        return customerRepositoryPort.findByCpf(cpf);
     }
 
     @Override

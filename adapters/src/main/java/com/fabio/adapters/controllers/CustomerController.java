@@ -5,10 +5,6 @@ import com.fabio.entities.customer.Customer;
 import com.fabio.ports.customer.CustomerServicePort;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,21 +32,24 @@ public class CustomerController {
 
         @GetMapping
         @ResponseStatus(HttpStatus.OK)
-        public Page<CustomerEntityDTO> findAll(@PageableDefault(size = 3) Pageable pageable){
+        public List<CustomerEntityDTO> findAll(){
                List<Customer> customerList = customerServicePort.findAll();
-               List<CustomerEntityDTO> customerEntityDTOList =
-                       customerList.stream().map(customer -> modelMapper.map(customer,CustomerEntityDTO.class))
-                               .collect(Collectors.toList());
-               Page<CustomerEntityDTO> page = new PageImpl<>(customerEntityDTOList
-                       ,pageable,customerEntityDTOList.size());
-               return page;
+            return customerList.stream().map(customer -> modelMapper.map(customer,CustomerEntityDTO.class))
+                    .collect(Collectors.toList());
         }
 
-        @GetMapping("/{id}")
-        public ResponseEntity<CustomerEntityDTO> findById(@PathVariable Long id){
+        @GetMapping("/id/{id}")
+        public ResponseEntity<Optional<CustomerEntityDTO>> findById(@PathVariable Long id){
             Optional<Customer> customer = customerServicePort.findById(id);
-            CustomerEntityDTO customerEntityDTO = modelMapper.map(customer,CustomerEntityDTO.class);
-            return ResponseEntity.status(HttpStatus.OK).body(customerEntityDTO);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(customer.map(c->modelMapper.map(c,CustomerEntityDTO.class)));
+        }
+
+        @GetMapping("/cpf/{cpf}")
+        public ResponseEntity<Optional<CustomerEntityDTO>> findByCpf(@PathVariable String cpf){
+            Optional<Customer> customer = customerServicePort.findByCpf(cpf);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(customer.map(c -> modelMapper.map(c,CustomerEntityDTO.class)));
         }
 
 }

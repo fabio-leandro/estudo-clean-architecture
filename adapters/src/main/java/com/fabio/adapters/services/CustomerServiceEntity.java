@@ -31,21 +31,20 @@ public class CustomerServiceEntity implements CustomerRepositoryPort {
     @Override
     public List<Customer> findAll() {
         List<CustomerEntity> customerEntityList = customerRepositoryJPA.findAll();
-        List<Customer> customerList = customerEntityList.stream().map(c -> modelMapper.map(c,Customer.class))
+        return customerEntityList.stream().map(c -> modelMapper.map(c,Customer.class))
                 .collect(Collectors.toList());
-        return customerList;
     }
 
     @Override
     public Optional<Customer> findById(Long id)  {
         Optional<CustomerEntity> customerEntity = customerRepositoryJPA.findById(id);
-        Customer customerOptional = modelMapper.map(customerEntity,Customer.class);
-        return Optional.of(customerOptional);
+        return customerEntity.map(c -> modelMapper.map(c,Customer.class));
     }
 
     @Override
     public Optional<Customer> findByCpf(String cpf) {
-        return Optional.empty();
+        Optional<CustomerEntity> customerEntity = customerRepositoryJPA.findByCpf(cpf);
+        return customerEntity.map( c -> modelMapper.map(c, Customer.class));
     }
 
     @Override
