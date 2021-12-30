@@ -1,6 +1,7 @@
 package com.fabio.adapters.controllers;
 
 import com.fabio.adapters.dtos.CustomerEntityDTO;
+import com.fabio.adapters.exceptions.CustomerNotFoundException;
 import com.fabio.entities.customer.Customer;
 import com.fabio.ports.customer.CustomerServicePort;
 import org.modelmapper.ModelMapper;
@@ -39,15 +40,17 @@ public class CustomerController {
         }
 
         @GetMapping("/id/{id}")
-        public ResponseEntity<Optional<CustomerEntityDTO>> findById(@PathVariable Long id){
-            Optional<Customer> customer = customerServicePort.findById(id);
+        public ResponseEntity<Optional<CustomerEntityDTO>> findById(@PathVariable Long id) throws CustomerNotFoundException {
+            Optional<Customer> customer = Optional.ofNullable(customerServicePort.findById(id)
+                    .orElseThrow(() -> new CustomerNotFoundException("It was not found a customer with id -> "+id)));
             return ResponseEntity.status(HttpStatus.OK)
                     .body(customer.map(c->modelMapper.map(c,CustomerEntityDTO.class)));
         }
 
         @GetMapping("/cpf/{cpf}")
-        public ResponseEntity<Optional<CustomerEntityDTO>> findByCpf(@PathVariable String cpf){
-            Optional<Customer> customer = customerServicePort.findByCpf(cpf);
+        public ResponseEntity<Optional<CustomerEntityDTO>> findByCpf(@PathVariable String cpf) throws CustomerNotFoundException {
+            Optional<Customer> customer = Optional.ofNullable(customerServicePort.findByCpf(cpf)
+                    .orElseThrow(() -> new CustomerNotFoundException("It was not found a customer with cpf -> "+cpf)));
             return ResponseEntity.status(HttpStatus.OK)
                     .body(customer.map(c -> modelMapper.map(c,CustomerEntityDTO.class)));
         }

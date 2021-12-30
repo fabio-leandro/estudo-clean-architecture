@@ -1,11 +1,13 @@
 package com.fabio.adapters.services;
 
 import com.fabio.adapters.entities.CustomerEntity;
+import com.fabio.adapters.exceptions.CustomerNotFoundException;
 import com.fabio.adapters.repository.CustomerRepositoryJPA;
 import com.fabio.entities.customer.Customer;
 import com.fabio.ports.customer.CustomerRepositoryPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
